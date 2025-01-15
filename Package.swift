@@ -1,10 +1,13 @@
-// swift-tools-version: 5.4
+// swift-tools-version:5.7
 import PackageDescription
 
 let package = Package(
     name: "PhoneNumberKit",
     platforms: [
-        .iOS(.v12), .macOS(.v10_13), .tvOS(.v12), .watchOS(.v4)
+        .iOS(.v13),
+        .macOS(.v10_13),
+        .tvOS(.v12),
+        .watchOS(.v4)
     ],
     products: [
         .library(name: "PhoneNumberKit", targets: ["PhoneNumberKit"]),
@@ -20,7 +23,11 @@ let package = Package(
                           "Info.plist"],
                 resources: [
                     .process("Resources/PhoneNumberMetadata.json")
-                ]),
+                ],
+                swiftSettings: [
+                                .define("BUILD_LIBRARY_FOR_DISTRIBUTION")
+                            ]
+               ),
         .testTarget(name: "PhoneNumberKitTests",
                     dependencies: ["PhoneNumberKit"],
                     path: "PhoneNumberKitTests",
