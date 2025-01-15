@@ -25,8 +25,12 @@ let package = Package(
                     .process("Resources/PhoneNumberMetadata.json")
                 ],
                 swiftSettings: [
-                                .define("BUILD_LIBRARY_FOR_DISTRIBUTION")
-                            ]
+                    .define("BUILD_LIBRARY_FOR_DISTRIBUTION"),
+                    .unsafeFlags([
+                        "-target", "x86_64-apple-ios-simulator",
+                        "-target", "arm64-apple-ios-simulator"
+                    ])
+                ]
                ),
         .testTarget(name: "PhoneNumberKitTests",
                     dependencies: ["PhoneNumberKit"],
